@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "skillPath": "frontend/framer-motion-animator/SKILL.md",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
+    "ui-design-system": {
+      "source": "samhvw8/dot-claude",
+      "sourceType": "github",
+      "skillPath": "skills/ui-design-system/SKILL.md",
+      "computedHash": "da805b478040b37f22d4ca74134bdad1f281f390f605fda2add000fec01df3c7"
+    },
+    "ui-ux-pro-max": {
+      "source": "likaia/nginxpulse",
+      "sourceType": "github",
+      "skillPath": ".codex/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "f98912d74b4cfd29fd0488002a5cc7dab2dc82376c7ff73591cae842e2042ae0"
+    }
+  }
+}

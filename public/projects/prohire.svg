@@ -1,0 +1,21 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#08080a"/>
+  <defs>
+    <linearGradient id="phg" x1="200" y1="100" x2="1400" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#phg)"/>
+  <circle cx="400" cy="320" r="120" stroke="#2a2a32" stroke-width="2"/>
+  <circle cx="800" cy="320" r="120" stroke="#2a2a32" stroke-width="2"/>
+  <circle cx="1200" cy="320" r="120" stroke="#2a2a32" stroke-width="2"/>
+  <line x1="520" y1="320" x2="680" y2="320" stroke="#3f3f48" stroke-width="2"/>
+  <line x1="920" y1="320" x2="1080" y2="320" stroke="#3f3f48" stroke-width="2"/>
+  <rect x="280" y="520" width="1040" height="280" rx="4" stroke="#3a3a44" stroke-width="1.5" fill="#0c0c10"/>
+  <rect x="320" y="560" width="240" height="56" fill="#14141a" stroke="#33333c"/>
+  <rect x="600" y="560" width="240" height="56" fill="#14141a" stroke="#33333c"/>
+  <rect x="880" y="560" width="240" height="56" fill="#14141a" stroke="#33333c"/>
+  <text x="320" y="700" fill="#9ca3af" font-family="Arial, sans-serif" font-size="28" letter-spacing="4">PROHIRE NETWORKS</text>
+  <text x="320" y="740" fill="#6b7280" font-family="Arial, sans-serif" font-size="15" letter-spacing="3">PLACEMENT · JOBS · APPLICATIONS</text>
+</svg>

@@ -1,17 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { siteConfig } from "@/lib/data";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -19,12 +9,30 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const ogDescription =
+  "Full Stack Developer — Next.js App Router, TypeScript, APIs, Postgres/Supabase, Redis. Shipped MockArch (mockarch.in) and ProHire Networks (prohirenetworks.com).";
+
 export const metadata: Metadata = {
-  // TODO: update metadataBase to your final deployed URL before going live
   metadataBase: new URL("https://vamsikrishna-garisapati.vercel.app"),
-  title: "Vamsi Krishna - Full Stack Software Engineer",
-  description:
-    "Premium developer portfolio of Vamsi Krishna Garisapati featuring full stack systems, product engineering, and production impact.",
+  title: `${siteConfig.name} — Full Stack Developer`,
+  description: ogDescription,
+  keywords: [
+    "Full Stack Developer",
+    "Frontend Developer",
+    "Next.js",
+    "App Router",
+    "TypeScript",
+    "React",
+    "FastAPI",
+    "Django REST Framework",
+    "PostgreSQL",
+    "Supabase",
+    "Redis",
+    "Razorpay",
+    "Core Web Vitals",
+    "SEO",
+    "React Server Components",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -33,16 +41,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "/",
-    title: "Vamsi Krishna - Full Stack Software Engineer",
-    description:
-      "Premium developer portfolio of Vamsi Krishna Garisapati featuring full stack systems, product engineering, and production impact.",
-    siteName: "Vamsi Krishna",
+    title: `${siteConfig.name} — Full Stack Developer`,
+    description: ogDescription,
+    siteName: siteConfig.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vamsi Krishna - Full Stack Software Engineer",
-    description:
-      "Premium developer portfolio of Vamsi Krishna Garisapati featuring full stack systems, product engineering, and production impact.",
+    title: `${siteConfig.name} — Full Stack Developer`,
+    description: ogDescription,
     creator: "@vamsi_krishna15",
   },
 };
@@ -52,12 +58,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="flex min-h-dvh flex-col overflow-x-hidden">
-        {children}
+        <a href="#main-content" className="skip-to-content focus-ring">
+          Skip to content
+        </a>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
