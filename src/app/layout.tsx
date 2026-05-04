@@ -25,11 +25,11 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "Full Stack Engineer & Frontend Architect — I build production-ready web applications from scalable Node.js/Python backends to premium, high-performance Next.js frontends. Available for full-time roles and freelance.";
+  "Full Stack Engineer — I architect and ship robust production systems, from complex data layers and REST APIs (Python, FastAPI, Postgres) to high-performance Next.js frontends.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${siteConfig.name} — Full Stack Engineer & Frontend Architect`,
+  title: `${siteConfig.name} — Full Stack Engineer`,
   description: ogDescription,
   keywords: [
     "Hire Next.js Developer India",
@@ -80,15 +80,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "/",
-    title: `${siteConfig.name} — Full Stack Engineer & Frontend Architect`,
+    title: `${siteConfig.name} — Full Stack Engineer (APIs, Postgres & Next.js)`,
     description: ogDescription,
     siteName: siteConfig.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — Full Stack Engineer & Frontend Architect`,
+    title: `${siteConfig.name} — Full Stack Engineer (APIs, Postgres & Next.js)`,
     description: ogDescription,
     creator: "@vamsi_krishna15",
+  },
+  verification: {
+    google: "QezjcHzQW4aBzue9j-sH9G_bKJetF6bvyfAJKWrhBrw",
   },
 };
 export default function RootLayout({
