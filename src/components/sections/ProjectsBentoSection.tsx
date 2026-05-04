@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { projects } from "@/lib/data";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ProjectCard } from "@/components/cards/ProjectCard";
@@ -13,6 +14,7 @@ export function ProjectsBentoSection({
 }) {
   const ordered = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured));
   const shown = typeof limit === "number" ? ordered.slice(0, limit) : ordered;
+  const showViewAll = typeof limit === "number" && limit < ordered.length;
 
   return (
     <section
@@ -39,6 +41,17 @@ export function ProjectsBentoSection({
           );
         })}
       </div>
+
+      {showViewAll ? (
+        <div className="mt-8 flex justify-center md:mt-10">
+          <Link
+            href="/projects"
+            className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-subtle bg-transparent px-6 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 dark:hover:bg-white/[0.04]"
+          >
+            View all projects
+          </Link>
+        </div>
+      ) : null}
     </section>
   );
 }

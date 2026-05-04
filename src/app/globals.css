@@ -2,20 +2,16 @@
 
 :root {
   color-scheme: light;
-  --background: #fafafa;
-  --background-elevated: #ffffff;
-  --foreground: #0b1020;
-  --foreground-muted: #4b5563;
-  --border-subtle: rgba(15, 23, 42, 0.12);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --background: #ffffff;
+  --background-elevated: #fafafa;
+  --foreground: #0f172a;
+  --foreground-muted: #64748b;
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
   --accent-foreground: #ffffff;
-  --font-inter: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans",
-    "Liberation Sans", sans-serif;
-  --font-cormorant: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
-    serif;
-  --font-sans: var(--font-inter);
-  --font-serif-display: var(--font-cormorant);
+  --font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  --font-serif-display: var(--font-outfit, ui-sans-serif, system-ui, sans-serif);
   --text-display-hero: clamp(3.25rem, 12vw, 9.5rem);
   --text-display-lg: clamp(2.75rem, 8vw, 6.5rem);
   --text-display-sm: clamp(2rem, 5.5vw, 3.25rem);
@@ -27,14 +23,14 @@
 
 .dark {
   color-scheme: dark;
-  --background: #0a0b0f;
-  --background-elevated: #0f111a;
-  --foreground: #f5f7ff;
-  --foreground-muted: #9aa3b2;
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-foreground: #071022;
+  --background: #050505;
+  --background-elevated: #0a0a0b;
+  --foreground: #f8fafc;
+  --foreground-muted: #94a3b8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-foreground: #ffffff;
 }
 
 * {
@@ -76,7 +72,21 @@ body {
 }
 
 .font-serif-display {
-  font-family: var(--font-cormorant), "Times New Roman", serif;
+  font-family: var(--font-serif-display), sans-serif;
+}
+
+.glass-panel {
+  background: color-mix(in oklab, var(--background-elevated), transparent 25%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.dark .glass-panel {
+  background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255,255,255,0.05);
 }
 
 .text-display-hero {

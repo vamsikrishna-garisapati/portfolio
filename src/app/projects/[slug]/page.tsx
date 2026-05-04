@@ -60,7 +60,7 @@ export default async function ProjectCaseStudyPage({
           <Link href="/projects" className="micro-link focus-ring">
             Projects
           </Link>{" "}
-          <span aria-hidden>·</span> <span className="text-fg">{project.name}</span>
+          <span aria-hidden>{"\u00b7"}</span> <span className="text-fg">{project.name}</span>
         </nav>
 
         <header className="mt-6 border-b border-subtle pb-8">
@@ -70,7 +70,7 @@ export default async function ProjectCaseStudyPage({
                 {project.name}
               </h1>
               <p className="mt-4 text-[15px] leading-relaxed text-muted">
-                {project.roleTitle} · {project.status}
+                {project.roleTitle} {"\u00b7"} {project.status}
               </p>
             </div>
             {project.media ? (
@@ -98,6 +98,16 @@ export default async function ProjectCaseStudyPage({
             >
               Open {liveLabel}
             </a>
+            {project.links.repoUrl ? (
+              <a
+                href={project.links.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-subtle bg-transparent px-5 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 dark:hover:bg-white/[0.04]"
+              >
+                View on GitHub
+              </a>
+            ) : null}
             <a
               href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(`Portfolio — ${project.name}`)}`}
               className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-subtle bg-transparent px-5 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 dark:hover:bg-white/[0.04]"

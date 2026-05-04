@@ -6,7 +6,7 @@ import { siteConfig, experience, skills } from "@/lib/data";
 export const metadata: Metadata = {
   title: "About — Vamsi Krishna Garisapati",
   description:
-    "About Vamsi Krishna Garisapati: Full Stack Developer focused on Next.js App Router, TypeScript, APIs, Postgres/Supabase, performance, and clean UX.",
+    "About Vamsi Krishna Garisapati: Full Stack Developer — Python APIs (FastAPI, Django REST), Postgres/Supabase, plus Next.js App Router, TypeScript, performance, and clean UX.",
 };
 
 export default function AboutPage() {
@@ -23,8 +23,9 @@ export default function AboutPage() {
             {siteConfig.name}
           </h1>
           <p className="mt-4 max-w-[75ch] text-[16px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_18%)]">
-            I build production web apps end-to-end: Next.js App Router, TypeScript, APIs (FastAPI / Django REST),
-            Postgres/Supabase, auth, payments, and performance work (Core Web Vitals).
+            I build production systems end-to-end: REST APIs and backends (FastAPI, Django REST), Postgres/Supabase,
+            auth and data isolation — plus Next.js App Router and TypeScript frontends, payments integrations, and
+            performance work (Core Web Vitals).
           </p>
         </header>
 
@@ -39,7 +40,10 @@ export default function AboutPage() {
             </li>
             <li className="flex gap-2.5">
               <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]" aria-hidden />
-              <span>Own full stack delivery: UI, API design, auth boundaries, payments, and data isolation (RLS).</span>
+              <span>
+                Own full stack delivery: backend/API design, validation and service boundaries, auth, payments, and data
+                isolation (RLS) — plus UI when it ships in the same scope.
+              </span>
             </li>
             <li className="flex gap-2.5">
               <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]" aria-hidden />
@@ -55,7 +59,7 @@ export default function AboutPage() {
           <div className="mt-6 rounded-2xl border border-subtle bg-[color:color-mix(in_oklab,var(--background-elevated),transparent_35%)] p-6">
             <p className="font-serif-display text-2xl tracking-tight text-fg">{experience.company}</p>
             <p className="mt-2 text-[15px] text-muted">
-              {experience.role} · {experience.location} · {experience.range}
+              {experience.role} {"\u00b7"} {experience.location} {"\u00b7"} {experience.range}
             </p>
             <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_18%)]">
               {experience.bullets.map((bullet) => (

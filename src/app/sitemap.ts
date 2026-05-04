@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/lib/data";
+import { SITE_URL } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://vamsikrishna-garisapati.vercel.app";
+  const baseUrl = SITE_URL;
   const now = new Date();
 
   return [

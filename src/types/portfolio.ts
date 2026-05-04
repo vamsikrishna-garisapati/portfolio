@@ -50,6 +50,12 @@ export type SiteConfig = {
   name: string;
   headline: string;
   positioningLine: string;
+  /** Short home-page About blurb (distinct from `positioningLine`). */
+  aboutTeaser: string;
+  /** Roles you want recruiters to match first (ATS + scan). */
+  targetRoles: string[];
+  /** Bullets describing what the PDF resume emphasizes. */
+  resumeHighlights: string[];
   proofMetric: string;
   openTo: string;
   locationLine: string;
@@ -62,3 +68,10 @@ export type SiteConfig = {
   stackChips: string[];
 };
 
+export type Service = {
+  title: string;
+  summary: string;
+  outcomes: string[];
+  deliverables: string[];
+  keywords: string[];
+};

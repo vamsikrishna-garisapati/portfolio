@@ -4,15 +4,12 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-
-const navLinks = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+import { siteConfig } from "@/lib/data";
+import { pageNavLinks, sectionAnchorLinks } from "./nav-config";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.emailSubject)}`;
 
   useEffect(() => {
     if (!open) return;
@@ -71,16 +68,41 @@ export function MobileNav() {
               aria-label="Mobile"
               className="mx-auto flex w-full max-w-[1200px] flex-col px-6 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
             >
-              {navLinks.map((link) => (
+              {sectionAnchorLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="focus-ring micro-link border-b border-subtle py-4 text-sm uppercase tracking-[0.18em] text-muted last:border-none"
+                  className="focus-ring micro-link border-b border-subtle py-4 text-sm uppercase tracking-[0.18em] text-muted"
                 >
                   {link.label}
                 </Link>
               ))}
+              {pageNavLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="focus-ring micro-link border-b border-subtle py-4 text-sm uppercase tracking-[0.18em] text-muted"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href={siteConfig.resumePath}
+                download={siteConfig.resumeFileName}
+                onClick={() => setOpen(false)}
+                className="focus-ring border-b border-subtle py-4 text-sm font-semibold uppercase tracking-[0.18em] text-fg"
+              >
+                Resume (PDF)
+              </a>
+              <a
+                href={mailto}
+                onClick={() => setOpen(false)}
+                className="focus-ring border-b border-subtle py-4 text-sm font-semibold uppercase tracking-[0.18em] text-fg"
+              >
+                Email
+              </a>
               <div className="flex items-center justify-between border-b border-white/5 py-4">
                 <span className="text-sm uppercase tracking-[0.18em] text-muted">Theme</span>
                 <ThemeToggle />

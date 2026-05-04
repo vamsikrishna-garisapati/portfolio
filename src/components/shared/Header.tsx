@@ -1,13 +1,8 @@
 import Link from "next/link";
 import { MobileNav } from "./MobileNav";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeToggleSlot } from "./ThemeToggleSlot";
 import { siteConfig } from "@/lib/data";
-
-const navLinks = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+import { pageNavLinks, sectionAnchorLinks } from "./nav-config";
 
 export function Header() {
   const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(siteConfig.emailSubject)}`;
@@ -24,8 +19,13 @@ export function Header() {
         >
           VK
         </Link>
-        <div className="hidden max-w-[min(100%,52rem)] flex-wrap items-center justify-end gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.16em] text-muted sm:text-[11px] md:flex md:tracking-[0.18em] lg:max-w-none lg:gap-6 lg:text-xs xl:gap-8 xl:text-sm xl:tracking-[0.2em]">
-          {navLinks.map((link) => (
+        <div className="hidden max-w-[min(100%,52rem)] flex-wrap items-center justify-end gap-x-3 gap-y-2 text-[10px] uppercase tracking-[0.16em] text-muted sm:text-[11px] md:flex md:tracking-[0.18em] lg:max-w-none lg:gap-5 lg:text-xs xl:gap-6 xl:text-sm xl:tracking-[0.2em]">
+          {sectionAnchorLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="micro-link focus-ring">
+              {link.label}
+            </Link>
+          ))}
+          {pageNavLinks.map((link) => (
             <Link key={link.href} href={link.href} className="micro-link focus-ring">
               {link.label}
             </Link>
@@ -42,12 +42,12 @@ export function Header() {
             </a>
             <a
               href={mailto}
-              className="focus-ring inline-flex min-h-10 items-center rounded-md bg-[var(--accent)] px-4 py-2 text-xs font-semibold text-[var(--accent-foreground)] transition hover:bg-[var(--accent-hover)]"
+              className="focus-ring inline-flex min-h-10 items-center rounded-md bg-[var(--accent)] px-4 py-2 text-xs font-semibold text-[var(--accent-foreground)] transition hover:bg-[var(--accent-hover)] hover:-translate-y-0.5 shadow-sm"
             >
-              Email
+              Hire Me
             </a>
           </div>
-          <ThemeToggle />
+          <ThemeToggleSlot />
           <MobileNav />
         </div>
       </nav>

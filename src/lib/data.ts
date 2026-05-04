@@ -1,12 +1,26 @@
-﻿import type { Education, Experience, Project, SiteConfig } from "@/types/portfolio";
+import type { Education, Experience, Project, SiteConfig } from "@/types/portfolio";
+
+import type { Service } from "@/types/portfolio";
 
 export const siteConfig: SiteConfig = {
   name: "Vamsi Krishna Garisapati",
-  headline: "Full Stack Developer (Next.js â€¢ APIs â€¢ Postgres)",
+  headline: "Full Stack Engineer & Frontend Architect",
   positioningLine:
-    "I ship production web apps end-to-end: Next.js App Router, APIs, auth, payments, Postgres/Supabase, and performance work (Core Web Vitals).",
+    "I build production-ready web applications—from scalable Node.js/Python backends (FastAPI, Django, Postgres) to premium, high-performance Next.js frontends.",
+  aboutTeaser:
+    "Full stack engineer: I own features across the stack — from API design, validation, and database access (including RLS-aware patterns) to polished React/Next.js UI. Comfortable leading backend-heavy work or pairing with design for frontend polish.",
+  targetRoles: [
+    "Full Stack Engineer",
+    "Backend / API Engineer (Python, REST, Postgres)",
+    "Frontend Engineer (Next.js / React)",
+  ],
+  resumeHighlights: [
+    "Production experience: edtech at scale (5,000+ students) plus two live public products.",
+    "Stack depth: Next.js App Router, TypeScript, Python (FastAPI), Django REST, REST APIs, Postgres/Supabase, auth, payments, Redis-backed performance work.",
+    "Quality bar: clear API contracts and data boundaries, accessible UI where it ships, recruiter-friendly project write-ups, and performance-minded delivery.",
+  ],
   proofMetric: "Edtech platform reach: 5,000+ students and 100+ mentors. Plus 2 public products live.",
-  openTo: "Open to full-time roles (Full Stack / Frontend) and selective freelance.",
+  openTo: "Open to full-time roles, contract work, and remote opportunities.",
   locationLine: "Hyderabad, India (IST)",
   resumePath: "/Vamsi_Krishna_Garisapati_Resume.pdf",
   resumeFileName: "Vamsi_Krishna_Garisapati_Resume.pdf",
@@ -16,6 +30,65 @@ export const siteConfig: SiteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/vamsikrishna-garisapati",
   stackChips: ["Next.js", "TypeScript", "React", "FastAPI", "Django REST", "PostgreSQL", "Supabase", "Redis"],
 };
+
+export const services: Service[] = [
+  {
+    title: "Landing pages that convert",
+    summary: "Premium, fast landing pages for products, startups, and personal brands.",
+    outcomes: [
+      "Stronger first impression in under 30 seconds.",
+      "Better Core Web Vitals (LCP/CLS/INP) and Lighthouse scores.",
+      "SEO-ready structure: headings, metadata, and internal linking.",
+    ],
+    deliverables: ["Responsive UI", "SEO metadata", "Performance pass", "Accessible components"],
+    keywords: ["Next.js", "React", "Tailwind CSS", "SEO", "Core Web Vitals", "Accessibility"],
+  },
+  {
+    title: "Business websites & redesigns",
+    summary: "Modernize an existing site or ship a new one with clean UI, content structure, and trust signals.",
+    outcomes: [
+      "Clear service/value messaging and scan-friendly sections.",
+      "Improved mobile UX and consistent visual system.",
+      "Faster pages via image/layout optimization.",
+    ],
+    deliverables: ["Design refresh", "Component system", "Content structure", "Deployment"],
+    keywords: ["Responsive Design", "UI/UX", "Next.js App Router", "Performance", "Vercel"],
+  },
+  {
+    title: "SaaS UI & dashboards",
+    summary: "Build product UI with scalable component architecture, predictable state, and role-safe UX.",
+    outcomes: [
+      "Faster feature delivery via reusable components and patterns.",
+      "Clean, maintainable TypeScript and layout conventions.",
+      "Accessible, keyboard-friendly navigation and controls.",
+    ],
+    deliverables: ["UI screens", "Tables/forms", "State patterns", "A11y pass"],
+    keywords: ["TypeScript", "Component Architecture", "Dashboard UI", "Accessibility", "React"],
+  },
+  {
+    title: "Performance + SEO cleanup",
+    summary: "Targeted improvements to speed, stability, and search/social previews without a full rewrite.",
+    outcomes: [
+      "Reduced layout shift and improved loading experience.",
+      "Smaller bundles and fewer long tasks.",
+      "More consistent metadata + OpenGraph/Twitter cards.",
+    ],
+    deliverables: ["Perf audit", "Image optimization", "Metadata fixes", "A11y fixes"],
+    keywords: ["Web Performance", "Core Web Vitals", "SEO", "next/image", "Lighthouse"],
+  },
+  {
+    title: "APIs & backend work",
+    summary:
+      "REST APIs and service-layer work in Python (FastAPI, Django REST) with Postgres/Supabase — auth-aware endpoints, validation, and pragmatic data access.",
+    outcomes: [
+      "Predictable contracts between client and server (errors, validation, consistent patterns).",
+      "Safer multi-tenant flows with RBAC/RLS-aware access where it matters.",
+      "Easier handoff: documented endpoints and maintainable structure.",
+    ],
+    deliverables: ["Endpoint design", "Integration support", "Query tuning", "Auth/RBAC guidance"],
+    keywords: ["REST API", "FastAPI", "Django REST Framework", "PostgreSQL", "Supabase", "Python", "Backend Development"],
+  },
+];
 
 export const projects: Project[] = [
   {
@@ -137,4 +210,3 @@ export const education: Education = {
   range: "2020 — 2024",
   gpa: "7.76/10",
 };
-

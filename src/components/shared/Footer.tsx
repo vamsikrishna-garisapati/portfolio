@@ -15,6 +15,13 @@ export function Footer() {
             Email
           </a>
           <a
+            href={siteConfig.resumePath}
+            download={siteConfig.resumeFileName}
+            className="micro-link focus-ring"
+          >
+            Resume
+          </a>
+          <a
             href={siteConfig.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"

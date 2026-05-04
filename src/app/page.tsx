@@ -6,6 +6,9 @@ import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { EducationSection } from "@/components/sections/EducationSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { AboutTeaserSection } from "@/components/sections/AboutTeaserSection";
+import { ResumeSection } from "@/components/sections/ResumeSection";
 
 export default function Home() {
   return (
@@ -16,10 +19,13 @@ export default function Home() {
         className="mx-auto w-full min-w-0 max-w-[1200px] px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-0 md:px-10"
       >
         <HeroSection />
+        <SkillsSection />
+        <ServicesSection />
         <ProjectsBentoSection limit={2} />
         <ExperienceSection />
-        <SkillsSection />
+        <AboutTeaserSection />
         <EducationSection />
+        <ResumeSection />
         <ContactSection />
       </main>
       <Footer />

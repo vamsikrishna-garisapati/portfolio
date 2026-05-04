@@ -12,12 +12,8 @@ export function HeroSection() {
       />
 
       <div className="relative">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-          Recruiter-ready snapshot
-        </p>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-12 md:gap-5">
-          <div className="rounded-2xl border border-subtle bg-[color:color-mix(in_oklab,var(--background-elevated),transparent_35%)] p-6 md:col-span-7 md:p-8">
+        <div className="grid gap-4 md:grid-cols-12 md:gap-5">
+          <div className="rounded-2xl glass-panel p-6 md:col-span-7 md:p-8">
             <h1 className="font-serif-display text-display-sm leading-[0.95] tracking-[-0.03em] text-fg">
               {siteConfig.name.split(" ").slice(0, 2).join(" ")}
               <br />
@@ -44,9 +40,15 @@ export function HeroSection() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a
                 href={mailto}
-                className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-foreground)] transition hover:bg-[var(--accent-hover)]"
+                className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-foreground)] shadow-sm transition hover:bg-[var(--accent-hover)] hover:-translate-y-0.5"
               >
-                Email
+                Hire Me
+              </a>
+              <a
+                href="#projects"
+                className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-subtle bg-transparent px-6 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 dark:hover:bg-white/[0.04] hover:-translate-y-0.5"
+              >
+                View My Work
               </a>
               <Link
                 href="/projects"
@@ -69,16 +71,24 @@ export function HeroSection() {
               >
                 LinkedIn
               </a>
+              <a
+                href={siteConfig.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring micro-link inline-flex min-h-11 items-center px-1.5 py-3 text-sm text-muted transition hover:text-fg"
+              >
+                GitHub
+              </a>
             </div>
           </div>
 
           <div className="grid gap-4 md:col-span-5 md:gap-5">
-            <div className="rounded-2xl border border-subtle bg-[color:color-mix(in_oklab,var(--background-elevated),transparent_45%)] p-6 md:p-7">
+            <div className="rounded-2xl glass-panel p-6 md:p-7">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-500">Impact</p>
               <p className="mt-3 text-[15px] leading-relaxed text-stone-300">{siteConfig.proofMetric}</p>
             </div>
 
-            <div className="rounded-2xl border border-subtle bg-[color:color-mix(in_oklab,var(--background-elevated),transparent_45%)] p-6 md:p-7">
+            <div className="rounded-2xl glass-panel p-6 md:p-7">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-500">Availability</p>
               <p className="mt-3 text-[15px] leading-relaxed text-stone-300">{siteConfig.openTo}</p>
               <p className="mt-3 text-sm text-stone-500">{siteConfig.locationLine}</p>
