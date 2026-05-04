@@ -1,20 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { StructuredData } from "@/components/shared/StructuredData";
 import { siteConfig } from "@/lib/data";
 import { SITE_URL } from "@/lib/constants";
+import { ScrollProgress } from "@/components/shared/ScrollProgress";
+import { FloatingCTA } from "@/components/shared/FloatingCTA";
 
-const inter = Inter({
+const display = Fraunces({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-display",
   display: "swap",
 });
 
-const outfit = Outfit({
+const sans = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -99,14 +107,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const fontVars = `${display.variable} ${sans.variable} ${mono.variable}`;
   return (
-    <html lang="en" className={`h-full antialiased ${inter.variable} ${outfit.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className="flex min-h-dvh flex-col overflow-x-hidden">
+    <html lang="en" className={`h-full antialiased ${fontVars}`} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body className="flex min-h-dvh flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
         <a href="#main-content" className="skip-to-content focus-ring">
           Skip to content
         </a>
         <StructuredData />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ScrollProgress />
+          {children}
+          <FloatingCTA />
+        </ThemeProvider>
       </body>
     </html>
   );

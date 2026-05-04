@@ -1,53 +1,95 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { IconGithub } from "@/components/icons/BrandIcons";
+import { StackChipIcon } from "@/components/icons/StackChipIcon";
 import type { Project } from "@/types/portfolio";
 
 export function ProjectCard({
   project,
+  index,
   priority = false,
 }: {
   project: Project;
+  index: number;
   priority?: boolean;
 }) {
+  const reduce = useReducedMotion();
   const liveLabel = project.links.liveLabel ?? new URL(project.links.liveUrl).hostname;
+  const quote = project.star.result[0] ?? project.oneLiner;
+  const idx = String(index + 1).padStart(2, "0");
 
   return (
-    <article className="group relative overflow-hidden rounded-2xl glass-panel p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-6">
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/5 to-transparent dark:from-white/[0.04]" />
+    <motion.article
+      whileHover={reduce ? undefined : { y: -2 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      className="group flex h-full flex-col border border-[color:var(--border-subtle)] bg-[var(--background-elevated)]"
+    >
+      <div className="flex items-start justify-between gap-3 border-b border-[color:var(--border-subtle)] px-5 py-3 md:px-6">
+        <span className="font-mono-ui text-[11px] tabular-nums text-muted">{idx}</span>
+        <span className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">{project.status}</span>
+      </div>
 
-      <div className="relative flex h-full flex-col gap-5">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <h3 className="font-serif-display text-2xl tracking-tight text-fg md:text-3xl">{project.name}</h3>
-            <p className="mt-2 text-[13px] leading-relaxed text-muted">
-              {project.roleTitle} {"\u00b7"} {project.status}
-            </p>
+      {project.cover ? (
+        <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-[color:var(--border-subtle)] bg-[var(--background)]">
+          <Image
+            src={project.cover.src}
+            alt={project.cover.alt}
+            width={project.cover.width}
+            height={project.cover.height}
+            className="h-full w-full object-cover object-top"
+            sizes="(min-width: 768px) 50vw, 100vw"
+            priority={priority}
+          />
+        </div>
+      ) : null}
+      {project.cover ? (
+        <p className="border-b border-[color:var(--border-subtle)] px-5 py-2 font-mono-ui text-[10px] tracking-wide text-muted md:px-6">
+          {project.cover.caption}
+        </p>
+      ) : null}
+
+      <div className="relative flex flex-1 flex-col gap-5 p-5 md:p-6">
+        {!project.cover && project.media ? (
+          <div className="flex justify-end">
+            <Image
+              src={project.media.src}
+              alt=""
+              width={48}
+              height={48}
+              className="opacity-75"
+              aria-hidden
+              priority={priority}
+            />
           </div>
-          {project.media ? (
-            <div className="hidden shrink-0 md:block">
-              <Image
-                src={project.media.src}
-                alt={project.media.alt}
-                width={56}
-                height={56}
-                className="h-14 w-14 opacity-90"
-                priority={priority}
-              />
-            </div>
-          ) : null}
+        ) : null}
+
+        <div className="min-w-0">
+          <h3 className="font-serif-display text-2xl tracking-tight text-fg md:text-3xl">{project.name}</h3>
+          <p className="mt-2 font-mono-ui text-[12px] text-muted">
+            {project.roleTitle}
+            {" · "}
+            {project.status}
+          </p>
         </div>
 
-        <p className="text-[15px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_18%)]">
-          {project.oneLiner}
-        </p>
+        <p className="text-[15px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_15%)]">{project.oneLiner}</p>
+
+        <blockquote className="border-l-2 border-[color:var(--border-subtle)] pl-4 font-serif-display text-[17px] italic leading-snug text-fg md:text-lg">
+          &ldquo;{quote}&rdquo;
+        </blockquote>
 
         <div className="flex flex-wrap gap-2">
-          {project.highlights.slice(0, 4).map((chip) => (
+          {project.stack.map((item) => (
             <span
-              key={chip}
-              className="rounded-md border border-subtle bg-white/[0.02] px-2.5 py-1 text-[12px] font-medium text-muted transition-colors group-hover:border-white/10"
+              key={item}
+              className="inline-flex items-center gap-1.5 rounded border border-[color:var(--border-subtle)] bg-transparent px-2 py-1 font-mono-ui text-[11px] text-muted group-hover:border-[color:color-mix(in_oklab,var(--foreground),transparent_75%)]"
             >
-              {chip}
+              <StackChipIcon label={item} />
+              {item}
             </span>
           ))}
         </div>
@@ -55,7 +97,10 @@ export function ProjectCard({
         <ul className="space-y-2 text-[14px] leading-relaxed text-muted">
           {project.metrics.slice(0, 2).map((metric) => (
             <li key={metric} className="flex gap-2.5">
-              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]" aria-hidden />
+              <span
+                className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]"
+                aria-hidden
+              />
               <span>{metric}</span>
             </li>
           ))}
@@ -66,28 +111,31 @@ export function ProjectCard({
             href={project.links.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="focus-ring inline-flex min-h-10 items-center justify-center rounded-md bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--accent-hover)]"
+            className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-4 py-2.5 text-sm font-semibold text-[var(--accent-foreground)] transition hover:bg-[var(--accent-hover)]"
           >
             Open {liveLabel}
+            <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />
           </a>
           <Link
             href={`/projects/${project.slug}`}
-            className="focus-ring inline-flex min-h-10 items-center justify-center rounded-md border border-subtle bg-transparent px-4 py-2.5 text-sm font-semibold text-fg transition hover:-translate-y-0.5 hover:bg-black/5 dark:hover:bg-white/[0.04]"
+            className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[color:var(--border-subtle)] bg-transparent px-4 py-2.5 text-sm font-semibold text-fg transition hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_94%)] dark:hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_92%)]"
           >
             Case study
+            <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
           </Link>
           {project.links.repoUrl ? (
             <a
               href={project.links.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-ring inline-flex min-h-10 items-center justify-center rounded-md border border-subtle bg-transparent px-4 py-2.5 text-sm font-semibold text-fg transition hover:-translate-y-0.5 hover:bg-black/5 dark:hover:bg-white/[0.04]"
+              className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[color:var(--border-subtle)] bg-transparent px-4 py-2.5 text-sm font-semibold text-fg transition hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_94%)] dark:hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_92%)]"
             >
+              <IconGithub className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
               GitHub
             </a>
           ) : null}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

@@ -28,6 +28,14 @@ export type Project = {
     src: string;
     alt: string;
   };
+  /** Large editorial cover for cards / case studies — optional until screenshots are added. */
+  cover?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+  };
 };
 
 export type Experience = {
@@ -74,4 +82,11 @@ export type Service = {
   outcomes: string[];
   deliverables: string[];
   keywords: string[];
+};
+
+export type CapabilityGroup = {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  outcomes: string[];
 };

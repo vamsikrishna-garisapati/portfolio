@@ -1,6 +1,4 @@
-import type { Education, Experience, Project, SiteConfig } from "@/types/portfolio";
-
-import type { Service } from "@/types/portfolio";
+import type { CapabilityGroup, Education, Experience, Project, SiteConfig, Service } from "@/types/portfolio";
 
 export const siteConfig: SiteConfig = {
   name: "Vamsi Krishna Garisapati",
@@ -87,6 +85,32 @@ export const services: Service[] = [
     ],
     deliverables: ["Endpoint design", "Integration support", "Query tuning", "Auth/RBAC guidance"],
     keywords: ["REST API", "FastAPI", "Django REST Framework", "PostgreSQL", "Supabase", "Python", "Backend Development"],
+  },
+];
+
+/** Regrouped from `services` — no copy rewrite, only rearrangement. */
+export const capabilityGroups: CapabilityGroup[] = [
+  {
+    id: "fullstack",
+    eyebrow: "Full-stack delivery",
+    headline: "Ship end-to-end with clear ownership.",
+    outcomes: [
+      services[1].outcomes[0],
+      services[2].outcomes[0],
+      services[1].outcomes[1],
+    ],
+  },
+  {
+    id: "apis",
+    eyebrow: "APIs & backend",
+    headline: "Python, Postgres, and safe multi-tenant access.",
+    outcomes: services[4].outcomes.slice(0, 3),
+  },
+  {
+    id: "frontend",
+    eyebrow: "Frontend & performance",
+    headline: "Next.js, Core Web Vitals, and accessible UI.",
+    outcomes: [services[0].outcomes[0], services[0].outcomes[1], services[3].outcomes[0]],
   },
 ];
 

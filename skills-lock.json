@@ -7,6 +7,11 @@
       "skillPath": "frontend/framer-motion-animator/SKILL.md",
       "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
     },
+    "frontend-design": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "computedHash": "62052d7fa44289e974137336fa6a44fc8a376f80fa3e357d144e139ecc1bf16f"
+    },
     "ui-design-system": {
       "source": "samhvw8/dot-claude",
       "sourceType": "github",

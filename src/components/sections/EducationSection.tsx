@@ -12,24 +12,28 @@ export function EducationSection() {
       aria-labelledby="education-heading"
       className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md"
     >
-      <SectionHeading id="education-heading">Education</SectionHeading>
+      <SectionHeading id="education-heading" eyebrow="05 — EDUCATION">
+        Education
+      </SectionHeading>
+
       <motion.div
         {...revealUp}
         transition={revealTransition}
-        className="mt-10 grid gap-8 rounded-2xl glass-panel p-6 transition-all duration-300 hover:shadow-lg md:p-8 lg:grid-cols-[1.2fr_1.8fr] lg:gap-12"
+        className="mt-10 flex flex-col gap-4 border border-[color:var(--border-subtle)] bg-[var(--background-elevated)] px-6 py-6 md:flex-row md:items-center md:justify-between md:gap-8 md:py-8"
       >
-        <div className="space-y-1.5 border-b border-subtle pb-6 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-6">
-          <p className="font-serif-display text-3xl tracking-tight text-fg md:text-4xl">{education.school}</p>
-          <p className="text-[15px] font-medium text-fg">{education.degree}</p>
-          <p className="text-sm text-muted">{education.location}</p>
-          <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
-            {education.range} · GPA {education.gpa}
-          </p>
+        <div className="min-w-0">
+          <p className="font-serif-display text-2xl tracking-tight text-fg md:text-3xl">{education.school}</p>
+          <p className="mt-2 text-[15px] font-medium text-fg">{education.degree}</p>
+          <p className="mt-1 text-sm text-muted">{education.location}</p>
         </div>
-        <p className="max-w-[62ch] text-[15px] leading-relaxed text-muted">
-          Strong CS foundation; the sections above reflect what I ship in production.
+        <p className="font-mono-ui shrink-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted md:text-right">
+          {education.range}
+          {education.gpa ? ` · GPA ${education.gpa}` : ""}
         </p>
       </motion.div>
+      <p className="mt-6 max-w-[62ch] text-[14px] leading-relaxed text-muted">
+        Strong CS foundation — production depth is reflected in the sections above.
+      </p>
     </section>
   );
 }
