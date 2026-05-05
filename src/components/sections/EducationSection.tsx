@@ -12,7 +12,7 @@ export function EducationSection() {
       aria-labelledby="education-heading"
       className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md"
     >
-      <SectionHeading id="education-heading" eyebrow="05 — EDUCATION">
+      <SectionHeading id="education-heading" eyebrow="06 — EDUCATION">
         Education
       </SectionHeading>
 
@@ -37,3 +37,4 @@ export function EducationSection() {
     </section>
   );
 }
+
