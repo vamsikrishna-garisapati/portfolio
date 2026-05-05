@@ -1,10 +1,9 @@
-import type { CapabilityGroup, Education, Experience, Project, SiteConfig, Service } from "@/types/portfolio";
+﻿import type { CapabilityGroup, Education, Experience, Project, SiteConfig, Service } from "@/types/portfolio";
 
 export const siteConfig: SiteConfig = {
   name: "Vamsi Krishna Garisapati",
-  headline: "Full Stack Engineer",
-  positioningLine:
-    "I architect and ship robust production systems—from complex data layers and REST APIs (Python, FastAPI, Django, Postgres) to high-performance Next.js frontends.",
+  headline: "Full Stack Engineer & Freelance Developer",
+  positioningLine: "I architect and ship robust production systems. Building scalable APIs, high-performance frontends, and everything in between.",
   aboutTeaser:
     "Full stack engineer: I own features across the stack — from API design, validation, and database access (including RLS-aware patterns) to polished React/Next.js UI. Comfortable leading backend-heavy work or pairing with design for frontend polish.",
   targetRoles: [

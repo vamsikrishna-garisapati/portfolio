@@ -7,7 +7,7 @@ import { siteConfig, experience } from "@/lib/data";
 export const metadata: Metadata = {
   title: "About — Vamsi Krishna Garisapati",
   description:
-    "About Vamsi Krishna Garisapati: Full Stack Engineer — Python APIs (FastAPI, Django REST), Postgres/Supabase, plus Next.js App Router, TypeScript, performance, and clean UX.",
+    "About Vamsi Krishna Garisapati: full-stack engineer shipping Python APIs (FastAPI, Django REST), Postgres/Supabase, and high-performance Next.js/TypeScript frontends.",
 };
 
 export default function AboutPage() {
@@ -22,9 +22,8 @@ export default function AboutPage() {
           <p className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">About</p>
           <h1 className="font-serif-display mt-4 text-display-sm leading-[0.95] tracking-[-0.03em] text-fg">{siteConfig.name}</h1>
           <p className="about-drop-cap mt-6 max-w-[75ch] text-[16px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_12%)]">
-            I build production systems end-to-end: REST APIs and backends (FastAPI, Django REST), Postgres/Supabase, auth and
-            data isolation — plus Next.js App Router and TypeScript frontends, payments integrations, and performance work
-            (Core Web Vitals).
+            I build production systems end-to-end: REST APIs and backends (FastAPI, Django REST), Postgres/Supabase, auth and data isolation
+            — plus Next.js App Router and TypeScript frontends, payments integrations, and performance work (Core Web Vitals).
           </p>
         </header>
 
@@ -40,8 +39,7 @@ export default function AboutPage() {
             <li className="flex gap-3 [text-wrap:pretty]">
               <span className="font-mono-ui text-[11px] tabular-nums text-muted">02</span>
               <span>
-                Own full stack delivery: backend/API design, validation and service boundaries, auth, payments, and data
-                isolation (RLS) — plus UI when it ships in the same scope.
+                Own full stack delivery: backend/API design, validation and service boundaries, auth, payments, and data isolation (RLS) — plus UI when it ships in the same scope.
               </span>
             </li>
             <li className="flex gap-3 [text-wrap:pretty]">
@@ -60,16 +58,12 @@ export default function AboutPage() {
               <p className="font-serif-display text-3xl tracking-tight text-fg md:text-4xl">{experience.company}</p>
               <p className="text-[15px] font-medium text-fg">{experience.role}</p>
               <p className="text-sm text-muted">{experience.location}</p>
-              <p className="mt-2 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
-                {experience.range}
-              </p>
+              <p className="mt-2 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">{experience.range}</p>
             </div>
             <ul className="space-y-4">
               {experience.bullets.map((bullet, i) => (
                 <li key={bullet} className="flex gap-3 text-[15px] leading-relaxed text-muted [text-wrap:pretty]">
-                  <span className="font-mono-ui mt-0.5 text-[11px] tabular-nums text-muted">
-                    {(i + 1).toString().padStart(2, "0")}
-                  </span>
+                  <span className="font-mono-ui mt-0.5 text-[11px] tabular-nums text-muted">{(i + 1).toString().padStart(2, "0")}</span>
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -79,9 +73,9 @@ export default function AboutPage() {
 
         <StackSection
           embedded
-          title="ATS keywords"
-          description="Natural keywords for ATS parsing (also matches resume content)."
-          eyebrow="KEYWORDS"
+          title="Keywords recruiters search"
+          description="A quick, scannable list that matches my resume (helps both humans and ATS)."
+          eyebrow="KEYWORDS (ATS)"
           headingId="keywords-heading"
         />
       </main>
@@ -89,3 +83,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

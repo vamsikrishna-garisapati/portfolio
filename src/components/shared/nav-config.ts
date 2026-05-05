@@ -1,7 +1,8 @@
 /** Shared primary navigation — section anchors resolve on home (`/#id`). */
 export const sectionAnchorLinks = [
   { href: "/#work", label: "Work" },
-  { href: "/#capabilities", label: "Capabilities" },
+  { href: "/#services", label: "Services" },
+  { href: "/#capabilities", label: "Deliver" },
   { href: "/#stack", label: "Stack" },
   { href: "/#experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },
@@ -10,5 +11,4 @@ export const sectionAnchorLinks = [
 export const pageNavLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ] as const;

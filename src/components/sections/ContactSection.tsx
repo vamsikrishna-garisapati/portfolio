@@ -12,7 +12,7 @@ export function ContactSection() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 py-space-md md:py-16">
       <motion.div {...revealUp} transition={revealTransition}>
-        <p className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.22em] text-muted">06 — CONTACT</p>
+        <p className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.22em] text-muted">07 — CONTACT</p>
         <h2 id="contact-heading" className="font-serif-display mt-4 text-display-lg tracking-tight text-fg">
           Let&apos;s work.
         </h2>
@@ -50,18 +50,11 @@ export function ContactSection() {
             <IconGithub className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
             GitHub
           </a>
-          <a
-            href={mailto}
-            className="focus-ring inline-flex items-center gap-2 text-muted transition hover:text-fg"
-          >
+          <a href={mailto} className="focus-ring inline-flex items-center gap-2 text-muted transition hover:text-fg">
             <Mail className="h-4 w-4 shrink-0" aria-hidden />
             Email
           </a>
-          <a
-            href={siteConfig.resumePath}
-            download={siteConfig.resumeFileName}
-            className="focus-ring text-muted transition hover:text-fg"
-          >
+          <a href={siteConfig.resumePath} download={siteConfig.resumeFileName} className="focus-ring text-muted transition hover:text-fg">
             Resume (PDF)
           </a>
         </div>
@@ -69,3 +62,4 @@ export function ContactSection() {
     </section>
   );
 }
+

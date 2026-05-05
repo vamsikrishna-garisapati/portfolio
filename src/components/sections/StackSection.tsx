@@ -9,7 +9,7 @@ export function StackSection({
   embedded = false,
   title = "Stack",
   description = "Scan-friendly index — same keywords as resume and ATS parsers.",
-  eyebrow = "03 — STACK",
+  eyebrow = "04 — STACK",
   headingId = "stack-heading",
 }: {
   embedded?: boolean;
@@ -56,8 +56,13 @@ export function StackSection({
   }
 
   return (
-    <section id="stack" aria-labelledby={headingId} className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md">
+    <section
+      id="stack"
+      aria-labelledby={headingId}
+      className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md"
+    >
       {inner}
     </section>
   );
 }
+

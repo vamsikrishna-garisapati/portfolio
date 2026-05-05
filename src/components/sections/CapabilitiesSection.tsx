@@ -12,11 +12,11 @@ export function CapabilitiesSection() {
       aria-labelledby="capabilities-heading"
       className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md"
     >
-      <SectionHeading id="capabilities-heading" eyebrow="02 — CAPABILITIES">
-        Capabilities
+      <SectionHeading id="capabilities-heading" eyebrow="03 — DELIVERY">
+        What I deliver
       </SectionHeading>
       <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-muted">
-        What I deliver for teams and clients — grouped by how hiring managers and founders actually search.
+        Client outcomes, grouped by how hiring managers and founders actually search.
       </p>
 
       <div className="mt-10 grid gap-10 md:mt-12 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[color:var(--border-subtle)]">
@@ -43,3 +43,4 @@ export function CapabilitiesSection() {
     </section>
   );
 }
+
