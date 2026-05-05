@@ -1,8 +1,10 @@
 /** Shared primary navigation — section anchors resolve on home (`/#id`). */
 export const sectionAnchorLinks = [
-  { href: "/#skills", label: "Skills" },
-  { href: "/#services", label: "Services" },
-  { href: "/#projects", label: "Featured" },
+  { href: "/#work", label: "Work" },
+  { href: "/#capabilities", label: "Capabilities" },
+  { href: "/#stack", label: "Stack" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export const pageNavLinks = [

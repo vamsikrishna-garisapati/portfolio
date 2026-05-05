@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { siteConfig } from "@/lib/data";
 import { pageNavLinks, sectionAnchorLinks } from "./nav-config";
@@ -32,48 +33,32 @@ export function MobileNav() {
         aria-label={open ? "Close navigation" : "Open navigation"}
         aria-expanded={open}
         aria-controls="mobile-nav-drawer"
-        className="focus-ring flex h-11 w-11 shrink-0 items-center justify-center"
+        className="focus-ring flex h-11 w-11 shrink-0 items-center justify-center text-fg"
         onClick={() => setOpen((o) => !o)}
       >
-        <span className="relative flex h-[14px] w-5 flex-col justify-between">
-          <motion.span
-            animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="block h-px w-full origin-center bg-[color:color-mix(in_oklab,var(--foreground),transparent_20%)]"
-          />
-          <motion.span
-            animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.15 }}
-            className="block h-px w-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_20%)]"
-          />
-          <motion.span
-            animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="block h-px w-full origin-center bg-[color:color-mix(in_oklab,var(--foreground),transparent_20%)]"
-          />
-        </span>
+        {open ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-nav-drawer"
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full z-50 max-h-[min(70dvh,28rem)] overflow-y-auto overscroll-contain border-b border-subtle bg-[color:color-mix(in_oklab,var(--background-elevated),transparent_5%)] backdrop-blur-md"
+            className="absolute inset-x-0 top-full z-50 max-h-[min(70dvh,28rem)] overflow-y-auto overscroll-contain border-b border-[color:var(--border-subtle)] bg-[var(--background)]"
           >
             <nav
               aria-label="Mobile"
-              className="mx-auto flex w-full max-w-[1200px] flex-col px-6 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+              className="mx-auto flex w-full max-w-[1200px] flex-col px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:px-6"
             >
               {sectionAnchorLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="focus-ring micro-link border-b border-subtle py-4 text-sm uppercase tracking-[0.18em] text-muted"
+                  className="focus-ring border-b border-[color:var(--border-subtle)] py-4 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.2em] text-muted"
                 >
                   {link.label}
                 </Link>
@@ -83,7 +68,7 @@ export function MobileNav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="focus-ring micro-link border-b border-subtle py-4 text-sm uppercase tracking-[0.18em] text-muted"
+                  className="focus-ring border-b border-[color:var(--border-subtle)] py-4 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.2em] text-muted"
                 >
                   {link.label}
                 </Link>
@@ -92,19 +77,19 @@ export function MobileNav() {
                 href={siteConfig.resumePath}
                 download={siteConfig.resumeFileName}
                 onClick={() => setOpen(false)}
-                className="focus-ring border-b border-subtle py-4 text-sm font-semibold uppercase tracking-[0.18em] text-fg"
+                className="focus-ring border-b border-[color:var(--border-subtle)] py-4 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.2em] text-fg"
               >
                 Resume (PDF)
               </a>
               <a
                 href={mailto}
                 onClick={() => setOpen(false)}
-                className="focus-ring border-b border-subtle py-4 text-sm font-semibold uppercase tracking-[0.18em] text-fg"
+                className="focus-ring border-b border-[color:var(--border-subtle)] py-4 font-mono-ui text-[11px] font-semibold uppercase tracking-[0.2em] text-fg"
               >
                 Email
               </a>
-              <div className="flex items-center justify-between border-b border-white/5 py-4">
-                <span className="text-sm uppercase tracking-[0.18em] text-muted">Theme</span>
+              <div className="flex items-center justify-between border-b border-[color:var(--border-subtle)] py-4">
+                <span className="font-mono-ui text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">Theme</span>
                 <ThemeToggle />
               </div>
             </nav>

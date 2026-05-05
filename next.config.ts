@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   experimental: {
     workerThreads: true,
     cpus: 1,
+    viewTransition: true,
   },
 };
 

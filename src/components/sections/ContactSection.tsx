@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Mail } from "lucide-react";
+import { IconGithub, IconLinkedin } from "@/components/icons/BrandIcons";
 import { siteConfig } from "@/lib/data";
 import { revealTransition, revealUp } from "@/lib/motion";
 
@@ -9,54 +11,61 @@ export function ContactSection() {
 
   return (
     <section id="contact" aria-labelledby="contact-heading" className="scroll-mt-24 py-space-md md:py-16">
-      <motion.h2
-        {...revealUp}
-        transition={revealTransition}
-        className="font-serif-display text-display-lg tracking-tight text-fg"
-        id="contact-heading"
-      >
-        Contact
-      </motion.h2>
-      <p className="mt-4 max-w-[60ch] text-[15px] leading-relaxed text-muted">
-        {siteConfig.openTo} Best channel: email with role/project + stack.
-      </p>
+      <motion.div {...revealUp} transition={revealTransition}>
+        <p className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.22em] text-muted">06 — CONTACT</p>
+        <h2 id="contact-heading" className="font-serif-display mt-4 text-display-lg tracking-tight text-fg">
+          Let&apos;s work.
+        </h2>
+        <p className="mt-4 max-w-[56ch] text-[15px] leading-relaxed text-muted">
+          {siteConfig.openTo} Best channel: email with role, stack, and timeline.
+        </p>
 
-      <div className="mt-10 grid min-w-0 gap-10 border-t border-subtle pt-8 md:mt-12 md:grid-cols-2 md:gap-12 md:pt-10">
-        <div className="min-w-0 space-y-4">
-          <a
-            href={mailto}
-            className="focus-ring inline-block max-w-full break-words text-lg font-semibold text-fg underline decoration-black/20 underline-offset-[5px] transition hover:decoration-black/40 dark:decoration-white/20 dark:hover:decoration-white/40"
-          >
-            {siteConfig.email}
-          </a>
-          <p className="text-sm text-muted">{siteConfig.locationLine}</p>
-        </div>
-        <div className="min-w-0 space-y-3 break-words text-[15px] text-muted">
+        <a
+          href={mailto}
+          className="focus-ring mt-10 inline-block max-w-full break-words font-serif-display text-2xl font-normal tracking-tight text-fg underline decoration-[color:color-mix(in_oklab,var(--foreground),transparent_78%)] underline-offset-[6px] transition hover:decoration-[color:color-mix(in_oklab,var(--foreground),transparent_45%)] md:text-3xl"
+        >
+          {siteConfig.email}
+        </a>
+
+        <p className="mt-6 font-mono-ui text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">
+          Freelance + full-time · {siteConfig.locationLine}
+        </p>
+
+        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-[color:var(--border-subtle)] pt-10 font-mono-ui text-sm">
           <a
             href={siteConfig.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="micro-link focus-ring block py-0.5"
+            className="focus-ring inline-flex items-center gap-2 text-muted transition hover:text-fg"
           >
+            <IconLinkedin className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
             LinkedIn
           </a>
           <a
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="micro-link focus-ring block py-0.5"
+            className="focus-ring inline-flex items-center gap-2 text-muted transition hover:text-fg"
           >
+            <IconGithub className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
             GitHub
+          </a>
+          <a
+            href={mailto}
+            className="focus-ring inline-flex items-center gap-2 text-muted transition hover:text-fg"
+          >
+            <Mail className="h-4 w-4 shrink-0" aria-hidden />
+            Email
           </a>
           <a
             href={siteConfig.resumePath}
             download={siteConfig.resumeFileName}
-            className="micro-link focus-ring block py-0.5"
+            className="focus-ring text-muted transition hover:text-fg"
           >
             Resume (PDF)
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

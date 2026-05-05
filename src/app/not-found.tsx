@@ -4,15 +4,16 @@ import { Footer } from "@/components/shared/Footer";
 
 export default function NotFound() {
   return (
-    <div className="bg-[var(--background)] text-[var(--foreground)] selection:bg-black/10 selection:text-[var(--foreground)]">
+    <div className="bg-[var(--background)] text-[var(--foreground)] selection:bg-[color:color-mix(in_oklab,var(--foreground),transparent_88%)] selection:text-[var(--foreground)]">
       <Header />
       <main
         id="main-content"
         className="mx-auto w-full min-w-0 max-w-[900px] px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-16 md:px-10"
       >
-        <h1 className="font-serif-display text-display-sm leading-[0.95] tracking-[-0.03em] text-fg">Page not found</h1>
+        <p className="font-mono-ui text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">404 — Not found</p>
+        <h1 className="font-serif-display mt-4 text-display-sm leading-[0.95] tracking-[-0.03em] text-fg">Off the path</h1>
         <p className="mt-4 max-w-[70ch] text-[16px] leading-relaxed text-muted">
-          The page doesn’t exist. Go to projects for the fastest proof.
+          This URL doesn&apos;t exist. Head to projects for proof, or return home.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
@@ -23,7 +24,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/"
-            className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-subtle bg-transparent px-6 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 dark:hover:bg-white/[0.04]"
+            className="focus-ring inline-flex min-h-11 items-center justify-center rounded-md border border-[color:var(--border-subtle)] bg-transparent px-6 py-3 text-sm font-semibold text-fg transition hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_94%)] dark:hover:bg-[color:color-mix(in_oklab,var(--foreground),transparent_92%)]"
           >
             Home
           </Link>
@@ -33,4 +34,3 @@ export default function NotFound() {
     </div>
   );
 }
-
