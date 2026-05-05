@@ -120,6 +120,7 @@ export const projects: Project[] = [
     featured: true,
     oneLiner:
       "AI-assisted system design interview practice: architecture canvas, automated checks, traffic simulation, and subscriptions (live at mockarch.in).",
+    resultLine: "Live at mockarch.in · 20+ automated checks · Traffic simulation · Razorpay subscriptions",
     roleTitle: "Founder / Full Stack Engineer",
     roleScope:
       "Owned UI, APIs, AI integration, payments, Supabase RLS, and deployment. Built the product as a multi-tenant SaaS.",
@@ -165,6 +166,7 @@ export const projects: Project[] = [
     featured: false,
     oneLiner:
       "Placement platform with auth, dashboards, job applications, onboarding, profiles, and paid flows (live at prohirenetworks.com).",
+    resultLine: "Live at prohirenetworks.com · Role-safe dashboards · Razorpay paid flows · Secure auth boundaries",
     roleTitle: "Full Stack Developer",
     roleScope:
       "Delivered App Router UI, Supabase Auth, protected routing, data access boundaries, and Razorpay payment flows.",

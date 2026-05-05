@@ -9,7 +9,7 @@ export function StackSection({
   embedded = false,
   title = "Stack",
   description = "Scan-friendly index — same keywords as resume and ATS parsers.",
-  eyebrow = "04 — STACK",
+  eyebrow = "03 — STACK",
   headingId = "stack-heading",
 }: {
   embedded?: boolean;
@@ -65,4 +65,3 @@ export function StackSection({
     </section>
   );
 }
-

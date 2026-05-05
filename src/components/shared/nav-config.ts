@@ -2,7 +2,6 @@
 export const sectionAnchorLinks = [
   { href: "/#work", label: "Work" },
   { href: "/#services", label: "Services" },
-  { href: "/#capabilities", label: "Deliver" },
   { href: "/#stack", label: "Stack" },
   { href: "/#experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },

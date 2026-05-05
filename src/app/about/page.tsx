@@ -73,9 +73,9 @@ export default function AboutPage() {
 
         <StackSection
           embedded
-          title="Keywords recruiters search"
-          description="A quick, scannable list that matches my resume (helps both humans and ATS)."
-          eyebrow="KEYWORDS (ATS)"
+          title="Tech stack (quick scan)"
+          description="The tools I use day-to-day across frontend, backend, data, and delivery."
+          eyebrow="TECH STACK"
           headingId="keywords-heading"
         />
       </main>
@@ -83,4 +83,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
