@@ -10,4 +10,5 @@ export const sectionAnchorLinks = [
 export const pageNavLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
+  { href: "/lead", label: "Get Quote" },
 ] as const;
