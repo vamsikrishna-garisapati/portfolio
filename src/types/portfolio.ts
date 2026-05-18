@@ -15,7 +15,10 @@ export type Project = {
   slug: string;
   name: string;
   featured: boolean;
+  /** One-line product/value summary (scannable). */
   oneLiner: string;
+  /** Outcome / proof line shown on cards (scannable). */
+  resultLine: string;
   roleTitle: string;
   roleScope: string;
   stack: string[];

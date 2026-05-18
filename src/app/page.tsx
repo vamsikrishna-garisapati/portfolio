@@ -3,11 +3,11 @@ import { Footer } from "@/components/shared/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
 import { StackSection } from "@/components/sections/StackSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { EducationSection } from "@/components/sections/EducationSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { AboutTeaserSection } from "@/components/sections/AboutTeaserSection";
 
 export default function Home() {
   return (
@@ -20,9 +20,9 @@ export default function Home() {
         <HeroSection />
         <SelectedWorkSection limit={2} />
         <ServicesSection />
-        <CapabilitiesSection />
         <StackSection />
         <ExperienceSection />
+        <AboutTeaserSection />
         <EducationSection />
         <ContactSection />
       </main>

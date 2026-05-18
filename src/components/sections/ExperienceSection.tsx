@@ -12,7 +12,7 @@ export function ExperienceSection() {
       aria-labelledby="experience-heading"
       className="scroll-mt-24 border-b border-[color:var(--border-subtle)] py-space-md"
     >
-      <SectionHeading id="experience-heading" eyebrow="05 — EXPERIENCE">
+      <SectionHeading id="experience-heading" eyebrow="04 — EXPERIENCE">
         Experience
       </SectionHeading>
       <p className="mt-4 max-w-[60ch] text-[15px] leading-relaxed text-muted">Recent role — outcomes attributed to 10000 Coders.</p>
@@ -41,4 +41,3 @@ export function ExperienceSection() {
     </section>
   );
 }
-

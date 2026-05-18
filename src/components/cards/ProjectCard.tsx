@@ -19,7 +19,6 @@ export function ProjectCard({
 }) {
   const reduce = useReducedMotion();
   const liveLabel = project.links.liveLabel ?? new URL(project.links.liveUrl).hostname;
-  const quote = project.star.result[0] ?? project.oneLiner;
   const idx = String(index + 1).padStart(2, "0");
 
   return (
@@ -78,9 +77,10 @@ export function ProjectCard({
 
         <p className="text-[15px] leading-relaxed text-[color:color-mix(in_oklab,var(--foreground),transparent_15%)]">{project.oneLiner}</p>
 
-        <blockquote className="border-l-2 border-[color:var(--border-subtle)] pl-4 font-serif-display text-[17px] italic leading-snug text-fg md:text-lg">
-          &ldquo;{quote}&rdquo;
-        </blockquote>
+        <p className="rounded-lg border border-[color:var(--border-subtle)] bg-[color:color-mix(in_oklab,var(--background),var(--foreground)_2%)] px-4 py-3 text-[14px] leading-relaxed text-fg [text-wrap:pretty]">
+          <span className="font-mono-ui text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">Result:</span>{" "}
+          {project.resultLine}
+        </p>
 
         <div className="flex flex-wrap gap-2">
           {project.stack.map((item) => (
@@ -97,10 +97,7 @@ export function ProjectCard({
         <ul className="space-y-2 text-[14px] leading-relaxed text-muted">
           {project.metrics.slice(0, 2).map((metric) => (
             <li key={metric} className="flex gap-2.5">
-              <span
-                className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]"
-                aria-hidden
-              />
+              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--foreground),transparent_55%)]" aria-hidden />
               <span>{metric}</span>
             </li>
           ))}

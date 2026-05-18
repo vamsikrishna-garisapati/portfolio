@@ -1,0 +1,271 @@
+{
+  "name": "Lead Capture Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "client-lead-capture",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "Webhook_Trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        320
+      ],
+      "webhookId": "lead-capture-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json;\n\nconst clean = (v) => String(v ?? '').trim().replace(/\\s+/g, ' ');\nconst digitsOnly = (v) => String(v ?? '').replace(/\\D/g, '');\nconst parseBudget = (v) => {\n  const s = String(v ?? '').toLowerCase().replace(/[,₹\\s]/g, '');\n  if (!s) return null;\n  if (s.endsWith('k')) {\n    const n = Number(s.slice(0, -1));\n    return Number.isFinite(n) ? Math.round(n * 1000) : null;\n  }\n  const n = Number(s);\n  return Number.isFinite(n) ? Math.round(n) : null;\n};\n\nconst fromTally = Array.isArray(input.fields) || !!input.formName;\n\nconst name = clean(input.name ?? input.Name ?? input.full_name);\nconst phoneRaw = clean(input.phone ?? input.Phone ?? input.mobile ?? input['Phone Number']);\nconst email = clean(input.email ?? input.Email);\nconst serviceNeeded = clean(input.service ?? input.service_needed ?? input['Service needed'] ?? input.serviceType);\nconst budgetRaw = clean(input.budget ?? input.Budget ?? input['Estimated budget']);\nconst message = clean(input.message ?? input.Message ?? input.notes ?? input.requirement);\n\nif (!name || !phoneRaw || !serviceNeeded) {\n  throw new Error('Missing required fields: name, phone, service_needed');\n}\n\nconst d = digitsOnly(phoneRaw);\nlet phoneNormalized = d;\nif (d.length === 10) {\n  phoneNormalized = `+91${d}`;\n} else if (!d.startsWith('91') && d.length > 10) {\n  phoneNormalized = `+${d}`;\n} else if (d.startsWith('91')) {\n  phoneNormalized = `+${d}`;\n}\n\nconst now = new Date();\nconst stamp = now.toISOString().replace(/[-:TZ.]/g, '').slice(0, 14);\nconst rand = Math.random().toString(36).slice(2, 6);\n\nconst clientName = clean(input.client_name || $env.DEFAULT_CLIENT_NAME || 'client');\nconst ownerEmail = clean(input.owner_email || $env.DEFAULT_OWNER_EMAIL || 'owner@example.com');\nconst source = clean(input.source || (fromTally ? 'tally_form' : 'client_website_form'));\nconst budgetValue = parseBudget(budgetRaw);\n\nconst lead = {\n  lead_id: `LC-${stamp}-${rand}`,\n  created_at_utc: now.toISOString(),\n  source,\n  client_name: clientName,\n  name,\n  phone_raw: phoneRaw,\n  phone_normalized: phoneNormalized,\n  email: email || '',\n  service_needed: serviceNeeded,\n  budget_raw: budgetRaw || '',\n  budget_value_inr: budgetValue,\n  message: message || '',\n  status: 'new',\n  dedupe_key: `${clientName}:${phoneNormalized}:${serviceNeeded}`,\n  owner_email: ownerEmail\n};\n\nreturn [{ json: lead }];"
+      },
+      "id": "Normalize_Validate",
+      "name": "Normalize + Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "={{$env.GOOGLE_SHEET_ID}}",
+        "sheetName": "Leads",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead_id": "={{$json.lead_id}}",
+            "created_at_utc": "={{$json.created_at_utc}}",
+            "source": "={{$json.source}}",
+            "client_name": "={{$json.client_name}}",
+            "name": "={{$json.name}}",
+            "phone_raw": "={{$json.phone_raw}}",
+            "phone_normalized": "={{$json.phone_normalized}}",
+            "email": "={{$json.email}}",
+            "service_needed": "={{$json.service_needed}}",
+            "budget_raw": "={{$json.budget_raw}}",
+            "budget_value_inr": "={{$json.budget_value_inr}}",
+            "message": "={{$json.message}}",
+            "status": "={{$json.status}}",
+            "dedupe_key": "={{$json.dedupe_key}}",
+            "owner_email": "={{$json.owner_email}}"
+          }
+        },
+        "options": {}
+      },
+      "id": "Append_Lead_To_Sheets",
+      "name": "Append Lead To Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        760,
+        320
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "replace-with-credential-id",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const lead = $json;\nconst ownerNumber = String($env.DEFAULT_OWNER_WHATSAPP || '').replace(/\\D/g, '');\nconst msg = `Hi ${lead.name}, thanks for your inquiry about ${lead.service_needed}. We'll contact you shortly.`;\nconst waLink = ownerNumber\n  ? `https://wa.me/${ownerNumber}?text=${encodeURIComponent(msg)}`\n  : '';\n\nreturn [{\n  json: {\n    ...lead,\n    whatsapp_link: waLink,\n    duplicate_flag: false,\n    sla_hours: Number($env.DEFAULT_RESPONSE_SLA_HOURS || 24)\n  }\n}];"
+      },
+      "id": "Enrich_Metadata",
+      "name": "Enrich Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json.email}}",
+        "subject": "Thanks for contacting us - {{$json.service_needed}}",
+        "emailType": "text",
+        "message": "=Hi {{$json.name}},\\n\\nThanks for your enquiry about {{$json.service_needed}}.\\nWe received your details and will contact you within {{$json.sla_hours}} hours.\\n\\nReference ID: {{$json.lead_id}}\\n\\nRegards,\\n{{$json.client_name}} team",
+        "options": {}
+      },
+      "id": "Send_Lead_Email",
+      "name": "Send Lead Confirmation Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        220
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "replace-with-smtp-credential-id",
+          "name": "SMTP Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json.owner_email}}",
+        "subject": "New lead: {{$json.name}} | {{$json.service_needed}}",
+        "emailType": "text",
+        "message": "=New lead received.\\n\\nLead ID: {{$json.lead_id}}\\nName: {{$json.name}}\\nPhone: {{$json.phone_normalized}}\\nEmail: {{$json.email || 'N/A'}}\\nService: {{$json.service_needed}}\\nBudget: {{$json.budget_raw || 'N/A'}}\\nSource: {{$json.source}}\\nDuplicate: {{$json.duplicate_flag ? 'Yes' : 'No'}}\\n\\nWhatsApp quick follow-up:\\n{{$json.whatsapp_link || 'Not configured'}}",
+        "options": {}
+      },
+      "id": "Send_Owner_Email",
+      "name": "Send Owner Alert Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        420
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "replace-with-smtp-credential-id",
+          "name": "SMTP Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.email}}",
+              "operation": "notEmpty"
+            }
+          ]
+        }
+      },
+      "id": "If_Email_Present",
+      "name": "If Lead Email Present",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"ok\": true, \"lead_id\": $json.lead_id, \"status\": $json.status}",
+        "options": {}
+      },
+      "id": "Webhook_Response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        320
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize + Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize + Validate": {
+      "main": [
+        [
+          {
+            "node": "Append Lead To Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Lead To Sheets": {
+      "main": [
+        [
+          {
+            "node": "Enrich Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrich Metadata": {
+      "main": [
+        [
+          {
+            "node": "If Lead Email Present",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Owner Alert Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Lead Email Present": {
+      "main": [
+        [
+          {
+            "node": "Send Lead Confirmation Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Lead Confirmation Email": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Owner Alert Email": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "active": false,
+  "versionId": "1"
+}
